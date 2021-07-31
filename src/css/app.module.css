@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  background: #000;
+}
+
+.container {
+  width: 1080px;
+  margin: 0 auto;
+}
+
+.container h1 {
+  color: #fff;
+  font-size: 35px;
+  font-weight: 600;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.title {
+  margin-bottom: 10px;
+}
+
+.title h2 {
+  margin-bottom: 15px;
+}
