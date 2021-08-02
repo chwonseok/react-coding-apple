@@ -3,17 +3,24 @@ import classes from './css/app.module.css';
 import Modal from './components/Modal';
 
 export default function App() {
-  const [titles] = useState([
+  const [titles, setTitles] = useState([
     "About men's fashion",
     'Nice restaurant in Daegu',
     'Study React.js',
   ]);
+
   const [modal, setModal] = useState(false);
   const [numTitle, setNumTitle] = useState(0);
-  const [inputVal, setInputVal] = useState('');
+  const [post, setPost] = useState('');
 
-  function inputHandler(e) {
-    setInputVal(e.target.value);
+  function typeHandler(e) {
+    setPost(e.target.value);
+  }
+
+  function submitHandler(e) {
+    e.preventDefault();
+
+    setTitles([post, ...titles]);
   }
 
   return (
@@ -28,7 +35,7 @@ export default function App() {
       <div className={classes.container}>
         {titles.map((title, i) => {
           return (
-            <div className={classes.titles} key={i++}>
+            <div className={classes.titles} key={i}>
               <h2
                 onClick={() => {
                   setModal(!modal);
@@ -44,8 +51,16 @@ export default function App() {
         })}
 
         {/* INPUT FIELD */}
-        <input onChange={inputHandler} />
-        <p>{inputVal}</p>
+        <div className={classes.publish}>
+          <form onSubmit={submitHandler}>
+            <input
+              onChange={typeHandler}
+              type="text"
+              placeholder="write new post here"
+            />
+            <button>save</button>
+          </form>
+        </div>
 
         {/* MODAL AREA */}
         {modal ? <Modal title={titles} clickedNum={numTitle} /> : null}
