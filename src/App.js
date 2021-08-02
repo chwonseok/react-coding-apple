@@ -10,7 +10,8 @@ export default function App() {
   ]);
   const [modal, setModal] = useState(false);
 
-  function modalHandler() {
+  function modalHandler(i) {
+    console.log(i);
     setModal(!modal);
   }
 
@@ -27,7 +28,9 @@ export default function App() {
         {titles.map((title, i) => {
           return (
             <div className={classes.titles}>
-              <h2 onClick={modalHandler}>{title}</h2>
+              <h2 onClick={modalHandler}>
+                {title}, {i}
+              </h2>
               <span>July 30th posted</span>
               <hr />
             </div>
