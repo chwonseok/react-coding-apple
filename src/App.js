@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import classes from './css/app.module.css';
+import Modal from './components/Modal';
 
 export default function App() {
-  const [title, setTitle] = useState('Untitled');
-
-  function titleHanlder() {
-    setTitle('Answer');
-  }
+  const [title, setTitle] = useState([
+    "About men's fashion",
+    'Nice restaurant in Daegu',
+    'Study React.js',
+  ]);
 
   return (
     <>
@@ -15,21 +16,27 @@ export default function App() {
           <h1>Dev Log</h1>
         </div>
       </div>
-      {/* CONTENT AREA */}
+      {/* CONTENT AREA ⬇️ */}
       <div className={classes.container}>
         <div className={classes.title}>
-          <h2>Started building my dev-log</h2>
+          <h2>{title[0]}</h2>
+          <span>July 28th posted</span>
+        </div>
+        <hr />
+        <div className={classes.title}>
+          <h2>{title[1]}</h2>
+          <span>July 29th posted</span>
+        </div>
+        <hr />
+        <div className={classes.title}>
+          <h2>{title[2]}</h2>
           <span>July 30th posted</span>
         </div>
         <hr />
+      </div>
 
-        <button onClick={titleHanlder}>Change Title</button>
-
-        <div>
-          <h2>{title}</h2>
-          <span>July 30th posted</span>
-        </div>
-        <hr />
+      <div className={classes.container}>
+        <Modal />
       </div>
     </>
   );
