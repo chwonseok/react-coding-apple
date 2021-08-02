@@ -3,40 +3,39 @@ import classes from './css/app.module.css';
 import Modal from './components/Modal';
 
 export default function App() {
-  const [title, setTitle] = useState([
+  const [titles, setTitles] = useState([
     "About men's fashion",
     'Nice restaurant in Daegu',
     'Study React.js',
   ]);
+  const [modal, setModal] = useState(false);
+
+  function modalHandler() {
+    setModal(!modal);
+  }
 
   return (
     <>
       <div className={classes.header}>
         <div className={classes.container}>
-          <h1>Dev Log</h1>
+          <h1>DevLog</h1>
         </div>
-      </div>
-      {/* CONTENT AREA ⬇️ */}
-      <div className={classes.container}>
-        <div className={classes.title}>
-          <h2>{title[0]}</h2>
-          <span>July 28th posted</span>
-        </div>
-        <hr />
-        <div className={classes.title}>
-          <h2>{title[1]}</h2>
-          <span>July 29th posted</span>
-        </div>
-        <hr />
-        <div className={classes.title}>
-          <h2>{title[2]}</h2>
-          <span>July 30th posted</span>
-        </div>
-        <hr />
       </div>
 
+      {/* CONTENT AREA ⬇️ */}
       <div className={classes.container}>
-        <Modal />
+        {titles.map((title, i) => {
+          return (
+            <div className={classes.titles}>
+              <h2 onClick={modalHandler}>{title}</h2>
+              <span>July 30th posted</span>
+              <hr />
+            </div>
+          );
+        })}
+
+        {/* MODAL AREA */}
+        {modal ? <Modal data={titles} /> : null}
       </div>
     </>
   );
