@@ -10,6 +10,11 @@ export default function App() {
   ]);
   const [modal, setModal] = useState(false);
   const [numTitle, setNumTitle] = useState(0);
+  const [inputVal, setInputVal] = useState('');
+
+  function inputHandler(e) {
+    setInputVal(e.target.value);
+  }
 
   return (
     <>
@@ -23,7 +28,7 @@ export default function App() {
       <div className={classes.container}>
         {titles.map((title, i) => {
           return (
-            <div className={classes.titles}>
+            <div className={classes.titles} key={i++}>
               <h2
                 onClick={() => {
                   setModal(!modal);
@@ -37,6 +42,10 @@ export default function App() {
             </div>
           );
         })}
+
+        {/* INPUT FIELD */}
+        <input onChange={inputHandler} />
+        <p>{inputVal}</p>
 
         {/* MODAL AREA */}
         {modal ? <Modal title={titles} clickedNum={numTitle} /> : null}
