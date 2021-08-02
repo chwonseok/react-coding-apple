@@ -27,6 +27,7 @@
 
 .titles h2 {
   margin-bottom: 15px;
+  cursor: pointer;
 }
 
 hr {

@@ -3,17 +3,13 @@ import classes from './css/app.module.css';
 import Modal from './components/Modal';
 
 export default function App() {
-  const [titles, setTitles] = useState([
+  const [titles] = useState([
     "About men's fashion",
     'Nice restaurant in Daegu',
     'Study React.js',
   ]);
   const [modal, setModal] = useState(false);
-
-  function modalHandler(i) {
-    console.log(i);
-    setModal(!modal);
-  }
+  const [numTitle, setNumTitle] = useState(0);
 
   return (
     <>
@@ -28,8 +24,13 @@ export default function App() {
         {titles.map((title, i) => {
           return (
             <div className={classes.titles}>
-              <h2 onClick={modalHandler}>
-                {title}, {i}
+              <h2
+                onClick={() => {
+                  setModal(!modal);
+                  setNumTitle(i);
+                }}
+              >
+                {title}
               </h2>
               <span>July 30th posted</span>
               <hr />
@@ -38,7 +39,7 @@ export default function App() {
         })}
 
         {/* MODAL AREA */}
-        {modal ? <Modal data={titles} /> : null}
+        {modal ? <Modal title={titles} clickedNum={numTitle} /> : null}
       </div>
     </>
   );
